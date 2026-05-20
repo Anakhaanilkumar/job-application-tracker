@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Tracker</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+<body>
+
+
+
+    <h1>Job Application Tracker</h1>
+
+    <form method="POST">
+
+    <label>Company Name:</label><br>
+    <input type="text" name="company"><br><br>
+
+    <label>Role:</label><br>
+    <input type="text" name="role"><br><br>
+
+    <label>Status:</label><br>
+    <select name="status">
+        <option>Applied</option>
+        <option>Interview</option>
+        <option>Rejected</option>
+        <option>Selected</option>
+    </select><br><br>
+
+    <button type="submit">Add Job</button>
+
+</form>
+
+<h2>Applications</h2>
+
+<ul>
+    {% for job in jobs %}
+
+        <li>
+            {{ job[1] }} - {{ job[2] }} - {{ job[3] }}
+
+            <a href="/delete/{{ job[0] }}">
+                <button>Delete</button>
+            </a>
+        </li>
+
+    {% endfor %}
+</ul>
+
+</body>
+
+</html>
